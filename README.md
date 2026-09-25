@@ -56,17 +56,25 @@ bun install --frozen-lockfile
 bun run check
 cargo build --release --locked --manifest-path native-host/Cargo.toml
 
-# Resolve and verify the exact executable path used in browser manifests.
+# Resolve and verify the native-host executable used during registration.
+# This is NOT the folder to select with Chrome's "Load unpacked" button.
 FLIPPY_ROOT="$(pwd -P)"
 FLIPPY_HOST="$FLIPPY_ROOT/native-host/target/release/flippy-native"
-test -x "$FLIPPY_HOST"
-printf '%s\n' "$FLIPPY_HOST"
+test -x "$FLIPPY_HOST" && printf 'Native host ready: %s\n' "$FLIPPY_HOST"
+
+# This separate directory IS the folder Chrome must load as the extension.
+FLIPPY_CHROME_EXTENSION="$FLIPPY_ROOT/dist/chrome"
+test -f "$FLIPPY_CHROME_EXTENSION/manifest.json" \
+  && printf 'Chrome extension folder: %s\n' "$FLIPPY_CHROME_EXTENSION"
 ```
 
 `bun run check` runs all JavaScript tests, Rust tests, and all three browser
 builds. Generated packages are in ignored `dist/`; the native executable is in
 ignored `native-host/target/`. Keep this terminal open so `FLIPPY_ROOT` and
-`FLIPPY_HOST` remain defined for the registration commands below.
+`FLIPPY_HOST` remain defined for the registration commands below. The two
+printed paths have different jobs: Chrome loads the **directory printed after
+`Chrome extension folder:`**; the file printed after `Native host ready:` is
+registered later and must not be selected in Chrome's folder picker.
 
 ## 3. Chrome installation
 
@@ -74,11 +82,17 @@ ignored `native-host/target/`. Keep this terminal open so `FLIPPY_ROOT` and
 
 1. Open `chrome://extensions`.
 2. Turn on **Developer mode**.
-3. Click **Load unpacked** and choose the absolute directory printed by:
+3. Click **Load unpacked**. In the macOS folder picker, press **Command-Shift-G**,
+   paste the directory printed after `Chrome extension folder:`, press Return,
+   then click **Select**. You can print it again with:
 
    ```sh
-   printf '%s\n' "$FLIPPY_ROOT/dist/chrome"
+   printf '%s\n' "$FLIPPY_CHROME_EXTENSION"
    ```
+
+   Select the `dist/chrome` directory itself. Do not select
+   `native-host/target/release`; that directory contains the native executable
+   and has no extension `manifest.json`.
 
 4. Find the Flippy card and copy its **ID** (a 32-character lowercase string).
 5. Set it in the same terminal, replacing the example value:
