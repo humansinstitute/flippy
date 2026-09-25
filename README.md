@@ -18,6 +18,11 @@ toolchain is Bun 1.3 or newer and Rust 1.91 or newer. Install the browser(s) you
 want to test. Safari packaging also requires full Xcode (not only Command Line
 Tools), an Apple Development signing identity, and an Apple Developer team.
 
+The Tower-hosted Forgejo origin requires an authorized native Forgejo account.
+On a Wingman-managed machine, use the shipped `git-credential-wingman` /
+Autopilot credential setup before cloning. Never put an OAuth token or raw
+Nostr key in the clone URL, shell history, or repository.
+
 Check everything before cloning:
 
 ```sh
