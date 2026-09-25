@@ -1,0 +1,12 @@
+{
+  "manifest_version": 2,
+  "name": "Flippy",
+  "version": "0.1.0",
+  "description": "Flip seamlessly between the old and new internet with Flippy.",
+  "permissions": ["nativeMessaging", "https://*/*"],
+  "background": { "scripts": ["native-adapter.js", "background.js"], "persistent": false },
+  "content_scripts": [{ "matches": ["https://*/*"], "js": ["content-bridge.js"], "run_at": "document_start", "all_frames": false }],
+  "web_accessible_resources": ["page-provider.js"],
+  "icons": { "128": "icon.svg" },
+  "browser_action": { "default_title": "Flippy" }
+}

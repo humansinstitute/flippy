@@ -1,0 +1,21 @@
+{
+  "name": "flippy",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Flip seamlessly between the old and new internet with Flippy.",
+  "scripts": {
+    "test": "bun test",
+    "test:chrome": "bun test tests/contract.test.js tests/chrome.test.js tests/native-protocol.test.js",
+    "test:firefox": "bun test tests/firefox.test.js",
+    "test:safari": "bun test tests/safari.test.js",
+    "build:chrome": "bun scripts/build.mjs chrome",
+    "build:firefox": "bun scripts/build.mjs firefox",
+    "build:safari": "bun scripts/build.mjs safari",
+    "build": "bun scripts/build.mjs all",
+    "check": "bun test && cargo test --manifest-path native-host/Cargo.toml && bun run build"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.1.32"
+  }
+}

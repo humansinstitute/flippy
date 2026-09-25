@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Approve FIPS connection — Flippy</title>
+  <link rel="stylesheet" href="approval.css">
+</head>
+<body>
+  <main>
+    <div class="mark" aria-hidden="true">F</div>
+    <h1>Connect through Flippy?</h1>
+    <p class="lede">Approve one identity-pinned FIPS service for this page.</p>
+    <dl>
+      <dt>Page</dt><dd id="origin">Loading…</dd>
+      <dt>FIPS peer</dt><dd id="peer">—</dd>
+      <dt>Port</dt><dd id="port">—</dd>
+      <dt>Purpose</dt><dd id="purpose">—</dd>
+    </dl>
+    <p class="note">Flippy transports bytes only. The page remains responsible for authentication and signing.</p>
+    <div class="actions"><button id="deny" class="secondary">Deny</button><button id="approve">Approve connection</button></div>
+    <p id="error" role="alert"></p>
+  </main>
+  <script src="approval.js"></script>
+</body>
+</html>
