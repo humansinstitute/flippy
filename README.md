@@ -50,7 +50,7 @@ current macOS/Xcode combination.
 ## 2. Clone, install, build, and validate
 
 ```sh
-git clone https://tower-stable-forgejo.b.otherstuff.ai/rick/flippy.git
+git clone https://github.com/humansinstitute/flippy.git
 cd flippy
 bun install --frozen-lockfile
 bun run check
