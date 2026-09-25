@@ -1,9 +1,47 @@
+# Dependencies, generated packages, test output, and Rust artifacts.
 node_modules/
 dist/
 build/
 coverage/
-tmp/
-.DS_Store
 native-host/target/
+
+# Run-specific handoffs and scratch files are operational records, not product source.
+tmp/
+*.tmp
+*.swp
+*.swo
+*~
+
+# Editor and OS metadata.
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Xcode user state, derived output, archives, and local signing/export products.
+DerivedData/
+*.xcuserstate
 *.xcodeproj/xcuserdata/
 *.xcworkspace/xcuserdata/
+*.xcarchive/
+*.ipa
+*.dSYM/
+*.dSYM.zip
+ExportOptions.plist
+
+# Credentials, environment overrides, keys, certificates, and provisioning profiles.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p8
+*.p12
+*.cer
+*.crt
+*.mobileprovision
+*.provisionprofile
+
+# Native-host manifests contain machine-specific absolute executable paths.
+au.com.otherstuff.flippy.json
+native-manifest*.json
